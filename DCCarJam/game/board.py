@@ -119,6 +119,8 @@ class Board(object):
             Board.heuristic = Board.h1
         elif heur == "h2":
             Board.heuristic = Board.h2
+        elif heur == "h3":
+            Board.heuristic = Board.h3
 
     def h0(self):
         """Zero Heuristic, Dijkstra's Algorithm"""
@@ -137,7 +139,7 @@ class Board(object):
             return 0
         blockingcars = 1
         for car in self.cars:
-            if car.orientation == Orientation.VERTICAL and car.coord['x'] >= (red_car.coord['x'] + red_car.length) and (car.coord['y'] <= red_car.coord['y'] and car.coord['y'] + car.length > red_car.coord['y']):
+            if car.orientation == Orientation.VERTICAL and car.coord['x'] >= (red_car.coord['x'] + red_car.length) and (car.coord['y'] <= red_car.coord['y'] and car.coord['y'] + car.length >= red_car.coord['y']):
                 blockingcars += 1
         return blockingcars
     
